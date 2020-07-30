@@ -1,0 +1,52 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <a href="javascript:;" class="nav-link">
+        <div class="nav-profile-image">
+          <img src="assets/images/faces/face1.jpg" alt="profile">
+          <span class="login-status online"></span> <!--change to offline or busy as needed-->              
+        </div>
+        <div class="nav-profile-text">
+          <span class="font-weight-bold mb-2">David Grey. H</span>
+          <span class="text-secondary text-small">Project Manager</span>
+        </div>
+        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': dashboard.isActive }">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
+        <span class="menu-title">Dashboard</span>
+        <i class="mdi mdi-home menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active' : productsAdd.isActive || productsList.isActive}">
+      <a class="nav-link" (click)="products = !products" 
+          [attr.aria-expanded]="products" aria-controls="ui-basic">
+        <span class="menu-title">Products</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+      </a>
+      <div class="collapse" id="products-submenus" [ngbCollapse]="!products">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="products/add" routerLinkActive="active" #productsAdd="routerLinkActive">Add</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="products/list" routerLinkActive="active" #productsList="routerLinkActive">List</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item" [ngClass]="{'active' : brandsAdd.isActive || brandsList.isActive}">
+      <a class="nav-link" (click)="brands = !brands" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
+        <span class="menu-title">Brand</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+      </a>
+      <div class="collapse" id="brands-submenu" [ngbCollapse]="!brands">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="brand/add" routerLinkActive="active" #brandsAdd="routerLinkActive">Add</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="brand/list" routerLinkActive="active" #brandsList="routerLinkActive">List</a></li>
+        </ul>
+      </div>
+    </li>
+    
+  </ul>
+</nav>
