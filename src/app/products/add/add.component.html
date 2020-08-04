@@ -1,0 +1,474 @@
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Add Product</h4>
+            <form class="form-sample">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Product Title</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Category</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="categoryChg($event.target.value)">
+                                    <option>Select Category</option>
+                                    <option *ngFor="let c of categories" [value]="c.id">{{c.category}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Short Description</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Brand</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="brandChg($event.target.value)">
+                                    <option>Select Brand</option>
+                                    <option *ngFor="let b of brands" [value]="b.id">{{b.brand}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Regular Price</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Sale Price</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Sale Price Starts At</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Sale Price Ends At</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">In Stock</label>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="stock" id="stock1" value=""
+                                            checked>
+                                        Yes
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="stock" id="stock2"
+                                            value="option2">
+                                        No
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Stock</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Visibility in Catalog</label>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="visibilityInCatalogue"
+                                            id="visibilityInCatalogue1" value="" checked>
+                                        Yes
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="visibilityInCatalogue"
+                                            id="visibilityInCatalogue2" value="option2">
+                                        No
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9">
+                                <input type="file" name="img[]" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="file" class="form-control file-upload-info" placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary"
+                                            type="button">Upload</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Tags</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Allow Customer Reviews</label>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="allowCustomerReviews"
+                                            id="allowCustomerReviews1" value="" checked>
+                                        Yes
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="allowCustomerReviews"
+                                            id="allowCustomerReviews2" value="option2">
+                                        No
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Product Size</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="productSizeChg($event.target.value)">
+                                    <option>Select Size</option>
+                                    <option *ngFor="let size of productSize" [value]="size">{{size}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Product Location</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="productLocationChg($event.target.value)">
+                                    <option>Select Location</option>
+                                    <option *ngFor="let loc of productLocation" [value]="loc">{{loc}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Product Color</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="productColorChg($event.target.value)">
+                                    <option>Select Color</option>
+                                    <option *ngFor="let color of productColor" [value]="color">{{ color }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Length</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="productLengthChg($event.target.value)">
+                                    <option>Select Length</option>
+                                    <option *ngFor="let length of productLength" [value]="length">{{ length }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Weight</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="productWeightChg($event.target.value)">
+                                    <option>Select Weight</option>
+                                    <option *ngFor="let kg of productWeight" [value]="kg">{{kg}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Width</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="productWidthChg($event.target.value)">
+                                    <option>Select Width</option>
+                                    <option *ngFor="let width of productWidth" [value]="width">{{width}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Height</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="productHeightChg($event.target.value)">
+                                    <option>Select Height</option>
+                                    <option *ngFor="let height of productHeight" [value]="height">{{height}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Quantity</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="productQtyChg($event.target.value)">
+                                    <option>Select Quantity</option>
+                                    <option *ngFor="let qty of quantity" [value]="qty">{{qty}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">C Image</label>
+                            <div class="col-sm-9">
+                                <input type="file" name="img[]" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="file" class="form-control file-upload-info" placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary"
+                                            type="button">Upload</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Color Code</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="colorCodeChg($event.target.value)">
+                                    <option>Select Color Code</option>
+                                    <option *ngFor="let code of colorCode" [value]="code">{{code}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Add More Fields</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="fieldChg($event.target.value)">
+                                    <option>Select Field</option>
+                                    <option *ngFor="let fields of moreFields" [value]="fields.attr">{{fields.attr}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Discount Available</label>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="discountAvailable"
+                                            id="discountAvailable1" value="" checked>
+                                        Yes
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="discountAvailable"
+                                            id="discountAvailable2" value="option2">
+                                        No
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Discount</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="discountChg($event.target.value)">
+                                    <option>Select Discount</option>
+                                    <option *ngFor="let disc of discounts" [value]="disc">{{disc}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Features Available</label>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="features" id="features1"
+                                            value="" checked>
+                                        Yes
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="features" id="features2"
+                                            value="option2">
+                                        No
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Features</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="featureChg($event.target.value)">
+                                    <option>Select Feature</option>
+                                    <option *ngFor="let feature of features" [value]="feature">{{feature}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Variant Retail Price</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="retailPriceChg($event.target.value)">
+                                    <option>Select Price</option>
+                                    <option *ngFor="let retailPrice of variantRetailPrice" [value]="retailPrice">{{retailPrice}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Variant Tax Price</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="variantTaxChg($event.target.value)">
+                                    <option>Select Price</option>
+                                    <option *ngFor="let taxPrice of variantTaxPrice" [value]="taxPrice">{{taxPrice}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Base Tax Percent</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" (change)="baseTaxChg($event.target.value)">
+                                    <option>Select Base Tax Percent</option>
+                                    <option *ngFor="let base of baseTaxPercent" [value]="base">{{base}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Product Note</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -33,7 +33,7 @@ export class ListComponent implements OnInit {
           this.loadershow = false;
           this.products = p.result
         }, error => {
-          
+          console.log(error)
         });
   }
 

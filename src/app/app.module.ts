@@ -38,6 +38,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { ListComponent } from './products/list/list.component';
+import { AddComponent } from './products/add/add.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { ListComponent } from './products/list/list.component';
     SidebarComponent,
     FooterComponent,
     DashboardComponent,     
-    SpinnerComponent, LoginComponent, ListComponent
+    SpinnerComponent, LoginComponent, ListComponent, AddComponent
   ],
   imports: [
     BrowserModule,
