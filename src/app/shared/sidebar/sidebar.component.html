@@ -24,7 +24,7 @@
           [attr.aria-expanded]="products" aria-controls="ui-basic">
         <span class="menu-title">Products</span>
         <i class="menu-arrow"></i>
-        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        <i class="mdi mdi-vector-intersection"></i>
       </a>
       <div class="collapse" id="products-submenus" [ngbCollapse]="!products">
         <ul class="nav flex-column sub-menu">
@@ -38,7 +38,7 @@
       <a class="nav-link" (click)="brands = !brands" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
         <span class="menu-title">Brand</span>
         <i class="menu-arrow"></i>
-        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        <i class="mdi mdi-vector-point"></i>
       </a>
       <div class="collapse" id="brands-submenu" [ngbCollapse]="!brands">
         <ul class="nav flex-column sub-menu">
@@ -52,7 +52,7 @@
       <a class="nav-link" (click)="category = !category" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
         <span class="menu-title">Category</span>
         <i class="menu-arrow"></i>
-        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        <i class="mdi mdi-vector-arrange-below"></i>
       </a>
       <div class="collapse" id="category-submenu" [ngbCollapse]="!category">
         <ul class="nav flex-column sub-menu">
@@ -60,6 +60,20 @@
           <li class="nav-item"> <a class="nav-link" routerLink="category/list" routerLinkActive="active" #categoryList="routerLinkActive">List</a></li>
         </ul>
       </div>
-    </li>    
+    </li>
+    
+    <li class="nav-item" [ngClass]="{'active' : usersAdd.isActive || usersList.isActive}">
+      <a class="nav-link" (click)="users = !users" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
+        <span class="menu-title">Customers</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-face  "></i>
+      </a>
+      <div class="collapse" id="users-submenu" [ngbCollapse]="!users">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="users/add" routerLinkActive="active" #usersAdd="routerLinkActive">Add</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="users/list" routerLinkActive="active" #usersList="routerLinkActive">List</a></li>
+        </ul>
+      </div>
+    </li>
   </ul>
 </nav>

@@ -42,6 +42,9 @@ import { ListComponent } from "./products/list/list.component";
 import { CategoryListComponent } from "./category/list/list.component";
 import { AddCategoryComponent } from "./category/add/add.component";
 import { AddLogoDialogComponent } from './shared/add-logo/add.logo.component';
+import { UserslistComponent } from './users/userslist/userslist.component';
+import { AddusersComponent } from './users/addusers/addusers.component';
+import { UserdetailsComponent } from './users/userdetails/userdetails.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { AddLogoDialogComponent } from './shared/add-logo/add.logo.component';
     ListComponent,
     CategoryListComponent,
     AddCategoryComponent,
-    AddLogoDialogComponent,    
+    AddLogoDialogComponent,
+    UserslistComponent,
+    AddusersComponent,
+    UserdetailsComponent,    
   ],
   imports: [
     BrowserModule,
