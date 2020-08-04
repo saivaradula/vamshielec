@@ -1,0 +1,77 @@
+.MAPlan {
+    background-color: #FBFBFB;
+    padding: 15px;
+    height: 100%;
+}
+.MAPlan h4 {
+    color: #1D1D1D;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+}
+.MAPlan .AP-list {
+    background-color: #fff;
+    padding: 10px;
+}
+.Upload-img {
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+    padding: 5px;
+    background-color: #F7F7F7;
+    height: 150px;
+    width: 150px;
+    margin-top: 10px;
+}
+.imgtext{
+    font-size: 11px;
+}
+.Add-photo .AddBtn {
+    width: 82px;
+    height: 82px;
+    border-radius: 5px;
+    background-color: #5CC6A3;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px;
+    padding-top: 20px;
+}
+.Add-photo .photos {
+    width: 82px;
+    height: 82px;
+    border-radius: 5px;
+    background-color: #e8e8e8;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  .Add-photo .photos-hover {
+    background-color: #0000007a;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    display: none;
+    padding-top: 25px;
+    position: absolute;
+    top: 0px;
+  }
+  
+  .Add-photo .photos-hover a {
+    color: #fff;
+    display: inline-block;
+    padding: 4px;
+  }
+  
+  .Add-photo .photos:hover .photos-hover {
+    display: block;
+  }
+  

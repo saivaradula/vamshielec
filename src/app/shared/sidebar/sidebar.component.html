@@ -47,6 +47,19 @@
         </ul>
       </div>
     </li>
-    
+
+    <li class="nav-item" [ngClass]="{'active' : categoryAdd.isActive || categoryList.isActive}">
+      <a class="nav-link" (click)="category = !category" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
+        <span class="menu-title">Category</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+      </a>
+      <div class="collapse" id="category-submenu" [ngbCollapse]="!category">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="category/add" routerLinkActive="active" #categoryAdd="routerLinkActive">Add</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="category/list" routerLinkActive="active" #categoryList="routerLinkActive">List</a></li>
+        </ul>
+      </div>
+    </li>    
   </ul>
 </nav>
