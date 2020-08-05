@@ -213,7 +213,7 @@ export class AddComponent implements OnInit {
       width: values.width,
       height: values.height,
       productQuantity: values.productQuantity,
-      cimage: '',
+      cimage: this.croppedImage2,
       colorCode: values.colorCode,
       addMoreFields: values.addMoreFields,
       discountAvailable: this.discountAvailableRadio,

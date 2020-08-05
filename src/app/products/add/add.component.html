@@ -347,7 +347,7 @@
                             <label class="col-sm-3 col-form-label">C Image</label>
                             <div class="col-sm-9 Add-photo">
                                 <span *ngIf="croppedImage2!=null">
-                                    <label for="file-input" class="addimglabel">
+                                    <label for="file-input-2" class="addimglabel">
                                     <div class="photos" [style.background-image]="'url(' +croppedImage2+ ')'">
                                             <div class="photos-hover" >
                                                 <i class="mdi mdi-delete"></i>
@@ -357,12 +357,12 @@
                                             <a (click)="deleteImage()"><i class="far fa-trash-alt"></i></a>
                                         </div>
                                     </div>
-                                    <input type="file" (change)="handleFileSelect2($event)" id="file-input"
+                                    <input type="file" (change)="handleFileSelect2($event)" id="file-input-2"
                                     style="display: none;">
                                 </label>
                                 </span>
                                 <span>
-                                    <label for="file-input" class="addimglabel" *ngIf="croppedImage2==null">
+                                    <label for="file-input-2" class="addimglabel" *ngIf="croppedImage2==null">
                                         <div class="AddBtn">
                                             <div>
                                                 <i class="mdi mdi-plus"></i>
@@ -370,7 +370,7 @@
                                             </div>
                                         </div>
                                     </label>
-                                    <input type="file" (change)="handleFileSelect2($event)" id="file-input"
+                                    <input type="file" (change)="handleFileSelect2($event)" id="file-input-2"
                                         style="display: none;">
                                 </span>
                             </div>

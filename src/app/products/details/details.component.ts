@@ -30,14 +30,14 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   async getProductDetails() {
-    await (await this.PS.getProductDetails(this.productId)).pipe(first()).subscribe(
-      async (p) => {
-        this.loadershow = false;
-        this.details = p.result[0];
-        console.log(this.details);
-      },
-      (error) => {}
-    );
+    // await (await this.PS.getProductDetails(this.productId)).pipe(first()).subscribe(
+    //   async (p) => {
+    //     this.loadershow = false;
+    //     this.details = p.result[0];
+    //     console.log(this.details);
+    //   },
+    //   (error) => {}
+    // );
   }
 
 }
