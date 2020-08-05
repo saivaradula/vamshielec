@@ -19,7 +19,7 @@ export class UserdetailsComponent implements OnInit {
     public AR: ActivatedRoute
   ) {
     this.AR.params.subscribe((params) => {
-      this.userid = params.userid;
+      this.userid = params.id;
     });
   }
 

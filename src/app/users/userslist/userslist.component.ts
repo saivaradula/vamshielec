@@ -31,6 +31,6 @@ export class UserslistComponent implements OnInit {
   }
 
   viewUser(user) {
-    this.router.navigate([`/users/details/${user.id}`]);
+    this.router.navigate([`/customer/details/${user.id}`]);
   }
 }

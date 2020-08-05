@@ -7,8 +7,8 @@
           <span class="login-status online"></span> <!--change to offline or busy as needed-->              
         </div>
         <div class="nav-profile-text">
-          <span class="font-weight-bold mb-2">David Grey. H</span>
-          <span class="text-secondary text-small">Project Manager</span>
+          <span class="font-weight-bold mb-2">{{userFullName}}</span>
+          <span class="text-secondary text-small">{{userType}}</span>
         </div>
         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
       </a>
@@ -70,8 +70,8 @@
       </a>
       <div class="collapse" id="users-submenu" [ngbCollapse]="!users">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" routerLink="users/add" routerLinkActive="active" #usersAdd="routerLinkActive">Add</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="users/list" routerLinkActive="active" #usersList="routerLinkActive">List</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="customers/add" routerLinkActive="active" #usersAdd="routerLinkActive">Add</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="customers/list" routerLinkActive="active" #usersList="routerLinkActive">List</a></li>
         </ul>
       </div>
     </li>
