@@ -8,6 +8,7 @@ import { AddCategoryComponent } from './category/add/add.component';
 import { UserslistComponent } from './users/userslist/userslist.component';
 import { AddusersComponent } from './users/addusers/addusers.component';
 import { UserdetailsComponent } from './users/userdetails/userdetails.component';
+import { ProductDetailsComponent } from './products/details/details.component';
 
 const routes: Routes = [ 
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -16,9 +17,10 @@ const routes: Routes = [
   { path: 'products/list', component: ListComponent },
   { path: 'category/list', component: CategoryListComponent },
   { path: 'category/add', component: AddCategoryComponent },
-  { path: 'users/details/:userid', component: UserdetailsComponent },
-  { path: 'users/list', component: UserslistComponent },
-  { path: 'users/add', component: AddusersComponent },
+  { path: 'customer/details/:id', component: UserdetailsComponent },
+  { path: 'customers/list', component: UserslistComponent },
+  { path: 'customers/add', component: AddusersComponent },
+  { path: 'products/details/:id', component: ProductDetailsComponent },
 ];
 
 @NgModule({

@@ -45,6 +45,7 @@ import { AddLogoDialogComponent } from './shared/add-logo/add.logo.component';
 import { UserslistComponent } from './users/userslist/userslist.component';
 import { AddusersComponent } from './users/addusers/addusers.component';
 import { UserdetailsComponent } from './users/userdetails/userdetails.component';
+import { ProductDetailsComponent } from './products/details/details.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { UserdetailsComponent } from './users/userdetails/userdetails.component'
     AddLogoDialogComponent,
     UserslistComponent,
     AddusersComponent,
-    UserdetailsComponent,    
+    UserdetailsComponent,
+    ProductDetailsComponent,    
   ],
   imports: [
     BrowserModule,

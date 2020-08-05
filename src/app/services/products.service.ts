@@ -19,4 +19,14 @@ export class ProductService {
                 })
             );
     }
+
+    async getProductDetails(id) {
+        return this.http
+            .get<any>(`${environment.apiURL}/products-details/${id}`)
+            .pipe(
+                map((p) => {
+                    return p;
+                })
+            );
+    }
 }
