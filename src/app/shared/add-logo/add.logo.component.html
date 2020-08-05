@@ -1,0 +1,23 @@
+<div class="MD-head">
+    <h2>Add Logo</h2>
+</div>
+
+<mat-dialog-content>
+    
+    <input type="file" (change)="fileChangeEvent($event)" id="browse"  accept="image/*" style="display: none;" />
+   <!--  <div class="imgtext">* png, jpg file formats are allowed. size limit up to 300kb is
+        supported</div> -->
+    <div class="row" > 
+      
+        <div class="col-12">
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"  [aspectRatio]="1 / 1"
+                [resizeToWidth]="150" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+        </div>
+    </div>
+    <div class="pt-15 text-center">
+     <button class="mr-3" mat-flat-button color="primary" (click)="saveProfileLogo()" type="button">Save</button>
+    <button type="button" mat-stroked-button color="accent" (click)="closeProfileDialog()">Cancel</button>
+
+</div>
+</mat-dialog-content>

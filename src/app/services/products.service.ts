@@ -19,4 +19,15 @@ export class ProductService {
                 })
             );
     }
+
+    async addProducts(params) {
+        return this.http
+            .post<any>(`${environment.apiURL}/products-add`, params)
+            .pipe(
+                map((p) => {
+                    return p;
+                })
+            );
+    }
+
 }

@@ -2,13 +2,13 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Add Product</h4>
-            <form class="form-sample">
+            <form [formGroup]="addProductForm" (ngSubmit)="addProduct(addProductForm.value)" class="form-sample">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Product Title</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" formControlName="productTitle" />
                             </div>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Category</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="categoryChg($event.target.value)">
+                                <select class="form-control" formControlName="categoryId" (change)="categoryChg($event.target.value)">
                                     <option>Select Category</option>
                                     <option *ngFor="let c of categories" [value]="c.id">{{c.category}}</option>
                                 </select>
@@ -29,7 +29,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Short Description</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control"></textarea>
+                                <textarea class="form-control" formControlName="shortDescription"></textarea>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Description</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control"></textarea>
+                                <textarea class="form-control" formControlName="description"></textarea>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Brand</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="brandChg($event.target.value)">
+                                <select class="form-control" formControlName="brandId" (change)="brandChg($event.target.value)">
                                     <option>Select Brand</option>
                                     <option *ngFor="let b of brands" [value]="b.id">{{b.brand}}</option>
                                 </select>
@@ -61,7 +61,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Regular Price</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="regularPrice" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Sale Price</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="salePrice" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Sale Price Starts At</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="salePriceStartsAt" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Sale Price Ends At</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="salePriceEndsAt" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -99,8 +99,7 @@
                             <div class="col-sm-4">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="stock" id="stock1" value=""
-                                            checked>
+                                        <input type="radio" class="form-check-input" (change)="inStock($event.target.value)" name="stock" id="stock1" value="Yes">
                                         Yes
                                         <i class="input-helper"></i>
                                     </label>
@@ -109,8 +108,7 @@
                             <div class="col-sm-5">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="stock" id="stock2"
-                                            value="option2">
+                                        <input type="radio" class="form-check-input" (change)="inStock($event.target.value)" name="stock" id="stock2" value="No">
                                         No
                                         <i class="input-helper"></i>
                                     </label>
@@ -118,11 +116,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" *ngIf="isStockAvailable">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Stock</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="stock" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -135,8 +133,8 @@
                             <div class="col-sm-4">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="visibilityInCatalogue"
-                                            id="visibilityInCatalogue1" value="" checked>
+                                        <input type="radio" class="form-check-input" (change)="visibilityInCatalogue($event.target.value)" name="visibilityInCatalogue"
+                                            id="visibilityInCatalogue1" value="Yes">
                                         Yes
                                         <i class="input-helper"></i>
                                     </label>
@@ -145,8 +143,8 @@
                             <div class="col-sm-5">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="visibilityInCatalogue"
-                                            id="visibilityInCatalogue2" value="option2">
+                                        <input type="radio" class="form-check-input" (change)="visibilityInCatalogue($event.target.value)" name="visibilityInCatalogue"
+                                            id="visibilityInCatalogue2" value="No">
                                         No
                                         <i class="input-helper"></i>
                                     </label>
@@ -158,7 +156,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Image</label>
+                            <!-- <label class="col-sm-3 col-form-label">Image</label>
                             <div class="col-sm-9">
                                 <input type="file" name="img[]" class="file-upload-default">
                                 <div class="input-group col-xs-12">
@@ -168,6 +166,36 @@
                                             type="button">Upload</button>
                                     </span>
                                 </div>
+                            </div> -->
+                            <label class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9 Add-photo">
+                                <span *ngIf="croppedImage1!=null">
+                                    <label for="file-input" class="addimglabel">
+                                    <div class="photos" [style.background-image]="'url(' +croppedImage1+ ')'">
+                                            <div class="photos-hover" >
+                                                <i class="mdi mdi-delete"></i>
+                                                <div>Upload</div>
+                                            </div>
+                                        <div class="photos-hover">
+                                            <a (click)="deleteImage()"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <input type="file" (change)="handleFileSelect1($event)" id="file-input"
+                                    style="display: none;">
+                                </label>
+                                </span>
+                                <span>
+                                    <label for="file-input" class="addimglabel" *ngIf="croppedImage1==null">
+                                        <div class="AddBtn">
+                                            <div>
+                                                <i class="mdi mdi-plus"></i>
+                                                <div>Upload</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <input type="file" (change)="handleFileSelect1($event)" id="file-input"
+                                        style="display: none;">
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -175,7 +203,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Tags</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="tags" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -187,8 +215,8 @@
                             <div class="col-sm-4">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="allowCustomerReviews"
-                                            id="allowCustomerReviews1" value="" checked>
+                                        <input type="radio" class="form-check-input" (change)="allowCustomerReview($event.target.value)" name="allowCustomerReviews"
+                                            id="allowCustomerReviews1" value="Yes">
                                         Yes
                                         <i class="input-helper"></i>
                                     </label>
@@ -197,8 +225,8 @@
                             <div class="col-sm-5">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="allowCustomerReviews"
-                                            id="allowCustomerReviews2" value="option2">
+                                        <input type="radio" class="form-check-input" (change)="allowCustomerReview($event.target.value)" name="allowCustomerReviews"
+                                            id="allowCustomerReviews2" value="No">
                                         No
                                         <i class="input-helper"></i>
                                     </label>
@@ -210,7 +238,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Product Size</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="productSizeChg($event.target.value)">
+                                <select class="form-control" formControlName="productSize" (change)="productSizeChg($event.target.value)">
                                     <option>Select Size</option>
                                     <option *ngFor="let size of productSize" [value]="size">{{size}}</option>
                                 </select>
@@ -224,7 +252,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Product Location</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="productLocationChg($event.target.value)">
+                                <select class="form-control" formControlName="productLocation" (change)="productLocationChg($event.target.value)">
                                     <option>Select Location</option>
                                     <option *ngFor="let loc of productLocation" [value]="loc">{{loc}}</option>
                                 </select>
@@ -235,7 +263,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Product Color</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="productColorChg($event.target.value)">
+                                <select class="form-control" formControlName="productColor" (change)="productColorChg($event.target.value)">
                                     <option>Select Color</option>
                                     <option *ngFor="let color of productColor" [value]="color">{{ color }}</option>
                                 </select>
@@ -248,7 +276,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Length</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="productLengthChg($event.target.value)">
+                                <select class="form-control" formControlName="length" (change)="productLengthChg($event.target.value)">
                                     <option>Select Length</option>
                                     <option *ngFor="let length of productLength" [value]="length">{{ length }}</option>
                                 </select>
@@ -259,7 +287,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Weight</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="productWeightChg($event.target.value)">
+                                <select class="form-control" formControlName="weight" (change)="productWeightChg($event.target.value)">
                                     <option>Select Weight</option>
                                     <option *ngFor="let kg of productWeight" [value]="kg">{{kg}}</option>
                                 </select>
@@ -272,7 +300,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Width</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="productWidthChg($event.target.value)">
+                                <select class="form-control" formControlName="width" (change)="productWidthChg($event.target.value)">
                                     <option>Select Width</option>
                                     <option *ngFor="let width of productWidth" [value]="width">{{width}}</option>
                                 </select>
@@ -283,7 +311,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Height</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="productHeightChg($event.target.value)">
+                                <select class="form-control" formControlName="height" (change)="productHeightChg($event.target.value)">
                                     <option>Select Height</option>
                                     <option *ngFor="let height of productHeight" [value]="height">{{height}}</option>
                                 </select>
@@ -296,7 +324,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Quantity</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="productQtyChg($event.target.value)">
+                                <select class="form-control" formControlName="productQuantity" (change)="productQtyChg($event.target.value)">
                                     <option>Select Quantity</option>
                                     <option *ngFor="let qty of quantity" [value]="qty">{{qty}}</option>
                                 </select>
@@ -305,7 +333,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">C Image</label>
+                            <!-- <label class="col-sm-3 col-form-label">C Image</label>
                             <div class="col-sm-9">
                                 <input type="file" name="img[]" class="file-upload-default">
                                 <div class="input-group col-xs-12">
@@ -315,6 +343,36 @@
                                             type="button">Upload</button>
                                     </span>
                                 </div>
+                            </div> -->
+                            <label class="col-sm-3 col-form-label">C Image</label>
+                            <div class="col-sm-9 Add-photo">
+                                <span *ngIf="croppedImage2!=null">
+                                    <label for="file-input" class="addimglabel">
+                                    <div class="photos" [style.background-image]="'url(' +croppedImage2+ ')'">
+                                            <div class="photos-hover" >
+                                                <i class="mdi mdi-delete"></i>
+                                                <div>Upload</div>
+                                            </div>
+                                        <div class="photos-hover">
+                                            <a (click)="deleteImage()"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <input type="file" (change)="handleFileSelect2($event)" id="file-input"
+                                    style="display: none;">
+                                </label>
+                                </span>
+                                <span>
+                                    <label for="file-input" class="addimglabel" *ngIf="croppedImage2==null">
+                                        <div class="AddBtn">
+                                            <div>
+                                                <i class="mdi mdi-plus"></i>
+                                                <div>Upload</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <input type="file" (change)="handleFileSelect2($event)" id="file-input"
+                                        style="display: none;">
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -324,7 +382,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Color Code</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="colorCodeChg($event.target.value)">
+                                <select class="form-control" formControlName="colorCode" (change)="colorCodeChg($event.target.value)">
                                     <option>Select Color Code</option>
                                     <option *ngFor="let code of colorCode" [value]="code">{{code}}</option>
                                 </select>
@@ -335,7 +393,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Add More Fields</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="fieldChg($event.target.value)">
+                                <select class="form-control" formControlName="addMoreFields" (change)="fieldChg($event.target.value)">
                                     <option>Select Field</option>
                                     <option *ngFor="let fields of moreFields" [value]="fields.attr">{{fields.attr}}</option>
                                 </select>
@@ -350,8 +408,8 @@
                             <div class="col-sm-4">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="discountAvailable"
-                                            id="discountAvailable1" value="" checked>
+                                        <input type="radio" class="form-check-input" (change)="discountAvailable($event.target.value)" name="discountAvailable"
+                                            id="discountAvailable1" value="Yes">
                                         Yes
                                         <i class="input-helper"></i>
                                     </label>
@@ -360,8 +418,8 @@
                             <div class="col-sm-5">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="discountAvailable"
-                                            id="discountAvailable2" value="option2">
+                                        <input type="radio" class="form-check-input" (change)="discountAvailable($event.target.value)" name="discountAvailable"
+                                            id="discountAvailable2" value="No">
                                         No
                                         <i class="input-helper"></i>
                                     </label>
@@ -369,11 +427,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" *ngIf="isDiscountAvailable">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Discount</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="discountChg($event.target.value)">
+                                <select class="form-control" formControlName="discount" (change)="discountChg($event.target.value)">
                                     <option>Select Discount</option>
                                     <option *ngFor="let disc of discounts" [value]="disc">{{disc}}</option>
                                 </select>
@@ -388,8 +446,8 @@
                             <div class="col-sm-4">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="features" id="features1"
-                                            value="" checked>
+                                        <input type="radio" class="form-check-input" (change)="featuresAvailable($event.target.value)" name="features" id="features1"
+                                            value="Yes">
                                         Yes
                                         <i class="input-helper"></i>
                                     </label>
@@ -398,8 +456,8 @@
                             <div class="col-sm-5">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="features" id="features2"
-                                            value="option2">
+                                        <input type="radio" class="form-check-input" (change)="featuresAvailable($event.target.value)" name="features" id="features2"
+                                            value="No">
                                         No
                                         <i class="input-helper"></i>
                                     </label>
@@ -407,11 +465,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" *ngIf="isFeaturesAvailable">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Features</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="featureChg($event.target.value)">
+                                <select class="form-control" formControlName="features" (change)="featureChg($event.target.value)">
                                     <option>Select Feature</option>
                                     <option *ngFor="let feature of features" [value]="feature">{{feature}}</option>
                                 </select>
@@ -424,7 +482,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Variant Retail Price</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="retailPriceChg($event.target.value)">
+                                <select class="form-control" formControlName="variantRetailPrice" (change)="retailPriceChg($event.target.value)">
                                     <option>Select Price</option>
                                     <option *ngFor="let retailPrice of variantRetailPrice" [value]="retailPrice">{{retailPrice}}</option>
                                 </select>
@@ -435,7 +493,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Variant Tax Price</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="variantTaxChg($event.target.value)">
+                                <select class="form-control" formControlName="variantTaxPercent" (change)="variantTaxChg($event.target.value)">
                                     <option>Select Price</option>
                                     <option *ngFor="let taxPrice of variantTaxPrice" [value]="taxPrice">{{taxPrice}}</option>
                                 </select>
@@ -448,7 +506,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Base Tax Percent</label>
                             <div class="col-sm-9">
-                                <select class="form-control" (change)="baseTaxChg($event.target.value)">
+                                <select class="form-control" formControlName="baseTaxPercent" (change)="baseTaxChg($event.target.value)">
                                     <option>Select Base Tax Percent</option>
                                     <option *ngFor="let base of baseTaxPercent" [value]="base">{{base}}</option>
                                 </select>
@@ -459,14 +517,14 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Product Note</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" rows="2"></textarea>
+                                <textarea class="form-control" formControlName="purchaseNote" rows="2"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <button type="button" class="btn btn-light">Cancel</button>
                 </div>
             </form>
         </div>
