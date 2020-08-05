@@ -11,8 +11,11 @@ export class SidebarComponent implements OnInit {
 
   userFullName = '';
   userType = '';
-
-  
+  products: boolean = false;
+  brands: boolean = false;
+  category: boolean = false;
+  users: boolean = false;
+    
   constructor() { }
 
   ngOnInit() {
