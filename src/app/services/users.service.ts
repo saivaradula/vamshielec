@@ -19,6 +19,16 @@ export class UserService {
       );
   }
 
+  async getOrders() {
+    return this.http
+      .get<any>(`${environment.apiURL}/orders-list-all`)
+      .pipe(
+        map((u) => {
+          return u;
+        })
+      );
+  }
+
   async getDetails(id) {
     return this.http
     .get<any>(`${environment.apiURL}/customer-details/${id}`)

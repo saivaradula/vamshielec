@@ -17,14 +17,9 @@ export class CategoryService {
     );
   }
 
-  async addCategory(name, image) {
-    let request = {
-      name: name,
-      //logo: image,
-      isActive: true,
-    };
+  async addCategory(data) {
     return this.http
-      .post<any>(`${environment.apiURL}/category-add`, request)
+      .post<any>(`${environment.apiURL}/category-add`, data)
       .pipe(
         map((p) => {
           console.log(p);

@@ -1,35 +1,53 @@
 <div class="page-header">
-    <h3 class="page-title">
-        Add Brands
-    </h3>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:;">Brands</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Enter Brand Details...!</li>
-        </ol>
-    </nav>
+  <h3 class="page-title">
+    Add Brands
+  </h3>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="javascript:;">Brands</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Enter Brand Details
+      </li>
+    </ol>
+  </nav>
 </div>
 <div class="row">
-    <div class="col-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Brands</h4>
-                <p class="card-description">
-                    Enter Brand Details...!
-                </p>
-                <form class="forms-sample" #brandData = "ngForm" (ngSubmit)="onClickSubmit(brandData.value)">
-                    <div class="form-group">
-                        <label for="brandName">Brand Name</label>
-                        <input type="text" name="name" class="form-control" id="brandName" placeholder="Name" ngModel>
-                    </div>
-                    <div class="form-group">
-                        <label for="brandType">Category Id</label>
-                          <select class="form-control" name="categoryId" id="brandType" ngModel>
-                            <option>1</option>
-                            <option>2</option>
-                          </select>
-                        </div>
-                    <!-- <div class="form-group">
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Brands</h4>
+        <p class="card-description">
+          Enter Brand Details...!
+        </p>
+        <form
+          class="forms-sample"
+          #brandData="ngForm"
+          (ngSubmit)="onClickSubmit(brandData.value)"
+        >
+          <div class="form-group">
+            <label for="brandName">Brand Name</label>
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              id="brandName"
+              placeholder="Name"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label for="brandType">Category Id</label>
+            <select
+              class="form-control"
+              name="categoryId"
+              id="brandType"
+              ngModel
+            >
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
+          <!-- <div class="form-group">
                         <label>File upload</label>
                         <input type="file" name="img[]" class="file-upload-default">
                         <div class="input-group col-xs-12">
@@ -41,14 +59,22 @@
                             </span>
                         </div>
                     </div> -->
-                    <div class="form-group">
-                        <label for="brandDescription">Description</label>
-                        <textarea class="form-control" name="description" id="brandDescription" rows="4" ngModel></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                </form>
-            </div>
-        </div>
+          <div class="form-group">
+            <label for="brandDescription">Description</label>
+            <textarea
+              class="form-control"
+              name="description"
+              id="brandDescription"
+              rows="4"
+              ngModel
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-gradient-primary mr-2">
+            Submit
+          </button>
+          <button class="btn btn-light" (click)="cancelAdd()">Cancel</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

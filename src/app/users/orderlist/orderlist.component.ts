@@ -4,12 +4,13 @@ import { first } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-userslist",
-  templateUrl: "./userslist.component.html",
-  styleUrls: ["./userslist.component.scss"],
+  selector: 'app-orderlist',
+  templateUrl: './orderlist.component.html',
+  styleUrls: ['./orderlist.component.scss']
 })
-export class UserslistComponent implements OnInit {
-  users: Array<object> = [];
+export class OrderlistComponent implements OnInit {
+
+  orders: Array<object> = [];
   loadershow: boolean;
   columns: any;
 
@@ -20,17 +21,13 @@ export class UserslistComponent implements OnInit {
   }
 
   async getList() {
-    await (await this.US.getUsers()).pipe(first()).subscribe(
+    await (await this.US.getOrders()).pipe(first()).subscribe(
       async (p) => {
         this.loadershow = false;
-        this.users = p.result;
-        console.log(this.users);
+        this.orders = p.result; 
       },
       (error) => {}
     );
   }
 
-  viewUser(user) {
-    this.router.navigate([`/customer/details/${user.id}`]);
-  }
 }

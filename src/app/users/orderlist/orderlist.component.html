@@ -1,0 +1,75 @@
+<div class="page-header">
+    <h3 class="page-title">
+      Customers List
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:;">Customers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Orders List</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <ngx-datatable
+            #table
+            class="material"
+            [loadingIndicator]="loadershow"
+            [rows]="orders"
+            [columns]="columns"
+            [sortType]="'multi'"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'50'"
+            [limit]="10"
+          >
+
+            <ngx-datatable-column [width]="300" name="Customer Name" prop="name">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                <div>
+                    {{ row.customer.firstName }} {{ row.customer.lastName }}
+                </div>
+                </ng-template>
+            </ngx-datatable-column>
+            
+            <ngx-datatable-column [width]="280" name="Product Name" prop="name">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <div>
+                  {{ row.name }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column [width]="180" name="Price" prop="price">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <div>
+                  {{ row.price }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+    
+            <ngx-datatable-column [width]="100" name="Status" prop="orderStatus">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <div>
+                  {{ row.orderStatus }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [width]="180" name="Order Date" prop="orderDate">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div>
+                    {{ row.orderDate | date: 'fullDate' }}
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+  
+             
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>

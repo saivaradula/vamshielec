@@ -8,11 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
   public uiBasicCollapsed = false;
   public samplePagesCollapsed = false;
+
+  userFullName = '';
+  userType = '';
+  products: boolean = false;
+  brands: boolean = false;
+  category: boolean = false;
+  users: boolean = false;
   
   constructor() { }
 
   ngOnInit() {
     const body = document.querySelector('body');
+
+    let user = JSON.parse( localStorage.getItem('user') );
+    this.userFullName = user.user_type;
+    this.userType = user.user_type;
 
     // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
     document.querySelectorAll('.sidebar .nav-item').forEach(function (el) {

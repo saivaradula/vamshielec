@@ -69,7 +69,12 @@ export class AddCategoryComponent implements OnInit {
     //   return false;
     // }
 
-    await (await this.CS.addCategory(this.categoryName, this.croppedImage))
+    let body = {
+      name: this.categoryName,
+      isActive: true,
+       //logo: this.croppedImage,
+    }
+    await (await this.CS.addCategory(body))
       .pipe(first())
       .subscribe(
         async (p) => {
