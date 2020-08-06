@@ -11,18 +11,12 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   public iconOnlyToggled = false;
   public sidebarToggled = false;
-
-  userFullName = '';
-  userType = '';
   
   constructor(config: NgbDropdownConfig, private router: Router,) {
     config.placement = 'bottom-right';
   }
 
   ngOnInit() {
-    let user = JSON.parse( localStorage.getItem('user') );
-    this.userFullName = user.user_type;
-    this.userType = user.user_type;
   }
 
   logout(){
