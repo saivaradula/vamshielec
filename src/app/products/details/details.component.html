@@ -1,1 +1,64 @@
-<p>details works!</p>
+<div class="page-header">
+    <h3 class="page-title">
+      Customers Details
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="javascript:;" [routerLink]="['/products/list']">Product</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row" *ngIf="details">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Details</h4>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <label>Product Name</label>
+                &nbsp;&nbsp;&nbsp;
+                <label><strong>{{ details.productTitle }}</strong></label>
+              </div>
+              <div class="col-md-4">
+                <label>Last Name</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{ details.lastName }}</strong></label
+                >
+              </div>
+              <div class="col-md-4">
+                <label>Email</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{ details.email }}</strong></label
+                >
+              </div>
+            </div>
+            <div>&nbsp;</div>
+            <div class="row">
+              <div class="col-md-4">
+                <label>Mobile</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{ details.mobile }}</strong></label
+                >
+              </div>
+              <div class="col-md-4">
+                <label>Status</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{
+                    details.isActive ? "Active" : "Inactive"
+                  }}</strong></label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

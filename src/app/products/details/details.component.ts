@@ -22,7 +22,6 @@ export class ProductDetailsComponent implements OnInit {
     this.AR.params.subscribe((params) => {
       this.productId = params.id;
     });
-    
   }
 
   ngOnInit(): void {
@@ -34,10 +33,10 @@ export class ProductDetailsComponent implements OnInit {
       async (p) => {
         this.loadershow = false;
         this.details = p.result[0];
-        console.log(this.details);
       },
-      (error) => {}
+      (error) => {
+        console.log(error.message);
+      }
     );
   }
-
 }
