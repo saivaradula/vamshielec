@@ -27,7 +27,7 @@
             [limit]="10"
           >
 
-            <ngx-datatable-column [width]="300" name="Customer Name" prop="name">
+            <ngx-datatable-column [width]="220" name="Customer Name" prop="name">
                 <ng-template let-row="row" ngx-datatable-cell-template>
                 <div>
                     {{ row.customer.firstName }} {{ row.customer.lastName }}
@@ -35,7 +35,7 @@
                 </ng-template>
             </ngx-datatable-column>
             
-            <ngx-datatable-column [width]="280" name="Product Name" prop="name">
+            <ngx-datatable-column [width]="250" name="Product Name" prop="name">
               <ng-template let-row="row" ngx-datatable-cell-template>
                 <div>
                   {{ row.name }}
@@ -43,7 +43,7 @@
               </ng-template>
             </ngx-datatable-column> 
 
-            <ngx-datatable-column [width]="180" name="Price" prop="price">
+            <ngx-datatable-column [width]="100" name="Price" prop="price">
               <ng-template let-row="row" ngx-datatable-cell-template>
                 <div>
                   {{ row.price }}
@@ -59,15 +59,21 @@
               </ng-template>
             </ngx-datatable-column>
 
+            <ngx-datatable-column [width]="100" name="City" prop="city">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div>
+                    {{ row.city }} 
+                  </div>
+                </ng-template>
+            </ngx-datatable-column>
+
             <ngx-datatable-column [width]="180" name="Order Date" prop="orderDate">
                 <ng-template let-row="row" ngx-datatable-cell-template>
                   <div>
                     {{ row.orderDate | date: 'fullDate' }}
                   </div>
                 </ng-template>
-              </ngx-datatable-column>
-  
-             
+            </ngx-datatable-column>
           </ngx-datatable>
         </div>
       </div>
