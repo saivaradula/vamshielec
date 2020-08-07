@@ -36,7 +36,7 @@
                     <ngx-datatable-column [width]="180" name="Brand" prop="brand">
                       <ng-template let-row="row" ngx-datatable-cell-template>
                           <div>
-                              {{row.brand}}
+                              {{row.brand == null ? '--' : row.brand.name}}
                           </div>
                       </ng-template>
                   </ngx-datatable-column>

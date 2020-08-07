@@ -189,7 +189,7 @@ export class AddComponent implements OnInit {
       isFeatured: this.featuresAvailableRadio,
       visibilityinCatalog: this.visibilityInCatalogueRadio,
       unitOption: '',
-      image: 'c:/image.jpg',
+      image: this.croppedImage1,
       shortDescription: values.shortDescription,
       description: values.description,
       salePriceStartsAt: values.salePriceStartsAt,
@@ -213,7 +213,7 @@ export class AddComponent implements OnInit {
       width: values.width,
       height: values.height,
       productQuantity: values.productQuantity,
-      cimage: 'c:/image.jpg',
+      cimage: this.croppedImage2,
       colorCode: values.colorCode,
       addMoreFields: values.addMoreFields,
       discountAvailable: this.discountAvailableRadio,
@@ -237,8 +237,12 @@ export class AddComponent implements OnInit {
     })
   }
 
-  deleteImage() {
+  deleteImage1() {
     this.croppedImage1 = null;
+  }
+
+  deleteImage2() {
+    this.croppedImage2 = null;
   }
 
   handleFileSelect1(e) {
