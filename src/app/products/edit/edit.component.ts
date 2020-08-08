@@ -76,6 +76,8 @@ export class EditProductComponent implements OnInit {
       variantTaxPercent: [],
       baseTaxPercent: [],
       purchaseNote: [],
+      image1: [],
+      image2:[]
     })
   }
 
@@ -95,6 +97,7 @@ export class EditProductComponent implements OnInit {
   }
 
   patchEditValues(values: any) {
+    console.log(values);
     this.editProductForm.get('productTitle').patchValue(values.productTitle);
     this.editProductForm.get('category').patchValue(values.category.name);
     this.editProductForm.get('shortDescription').patchValue(values.shortDescription);
@@ -122,8 +125,9 @@ export class EditProductComponent implements OnInit {
     this.editProductForm.get('variantTaxPercent').patchValue(values.product_variances[0]['variantTaxPercent']);
     this.editProductForm.get('baseTaxPercent').patchValue(values.baseTaxPercent);
     this.editProductForm.get('purchaseNote').patchValue(values.purchaseNote);
-    this.croppedImage1 = values.image;
-    this.croppedImage2 = values.cimage;
+    this.editProductForm.get('image1').patchValue(values.image);
+    this.editProductForm.get('image2').patchValue(values.cimage);
+
     this.inStockChecked = values.inStock;
     this.isVisibilityChecked = values.visibilityinCatalog;
     this.allowCustomerReviewRadio = values.allowCustomerReviews;
@@ -187,7 +191,7 @@ export class EditProductComponent implements OnInit {
   updateProduct(values) {
     console.log(values);
     //console.log(this.editProductForm.value);
-    let addProductParams = {
+    /* let addProductParams = {
       productTitle: values.productTitle,
       published: '',
       isFeatured: this.featuresAvailableRadio,
@@ -229,69 +233,74 @@ export class EditProductComponent implements OnInit {
       baseTaxPercent: values.baseTaxPercent,
       brandId: this.details.brand.id,
       quantity: values.quantity
-    }
-    console.log(addProductParams)
+    } */
+    //console.log(addProductParams)
+
+    const formData = new FormData();
+    formData.append('productTitle', values.productTitle);
+    formData.append('published', '');
+    formData.append('isFeatured', this.featuresAvailableRadio);
+    formData.append('visibilityinCatalog', this.visibilityInCatalogueRadio);
+    formData.append('unitOption', '');
+    formData.append('image', this.editProductForm.get('image1').value);
+    formData.append('shortDescription', values.shortDescription);
+    formData.append('description', values.description);
+    formData.append('salePriceStartsAt', values.salePriceStartsAt);
+    formData.append('salePriceEndsAt', values.salePriceEndsAt);
+    formData.append('inStock', this.inStockRadio || this.inStockChecked,);
+    formData.append('stock', (this.inStockRadio == 'yes' || this.inStockChecked == 'yes') ? values.stock : null);
+    formData.append('allowCustomerReviews', this.allowCustomerReviewRadio);
+    formData.append('purchaseNote', values.purchaseNote);
+    formData.append('salePrice', values.salePrice);
+    formData.append('regularPrice', values.regularPrice);
+    formData.append('tags', values.tags);
+    formData.append('productLocation', values.productLocation);
+    formData.append('isActive', 'true');
+    formData.append('optionTypeId', '1');
+    formData.append('optionValueId', '1');
+    formData.append('userId', '1');
+    formData.append('productColor', values.productColor);
+    formData.append('productSize', values.productSize);
+    formData.append('weight', values.weight);
+    formData.append('length', values.length);
+    formData.append('width', values.width);
+    formData.append('height', values.height);
+    formData.append('productQuantity', values.productQuantity);
+    formData.append('cimage', this.editProductForm.get('image2').value);
+    formData.append('colorCode', values.colorCode);
+    formData.append('addMoreFields', values.addMoreFields);
+    formData.append('discountAvailable', values.discountAvailableRadio);
+    formData.append('discount', values.discount);
+    formData.append('categoryId', values.categoryId);
+    formData.append('features', values.features);
+    formData.append('variantRetailPrice', values.variantRetailPrice);
+    formData.append('variantTaxPercent', values.variantTaxPercent);
+    formData.append('baseTaxPercent', values.baseTaxPercent);
+    formData.append('brandId', values.brandId);
+    formData.append('quantity', values.productQuantity);
+
+    this.editProductApi(this.details.id, formData);
 
   }
 
-  /* async addProductApi(params) {
-    await (await this.productService.updateProductDetails(params)).pipe(first()).subscribe(async data => {
+  async editProductApi(id, params) {
+    await (await this.productService.updateProductDetails(id, params)).pipe(first()).subscribe(async data => {
       console.log(data)
     })
-  } */
-
-  deleteImage1() {
-    this.croppedImage1 = null;
   }
 
-  deleteImage2() {
-    this.croppedImage2 = null;
-  }
+  onFileSelect(event, value) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      if(value == 1) {
+        this.editProductForm.patchValue({ image1: file });
+      } 
 
-  handleFileSelect1(e) {
-    console.log('1');
-    this.openLogoDialog1(e);
-  }
-
-  handleFileSelect2(e) {
-    console.log('2');
-    this.openLogoDialog2(e);
-  }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
-
-  openLogoDialog1(e) {
-    let dialogRef = this.dialog.open(AddLogoDialogComponent, {
-      height: "auto",
-      width: "40%",
-      disableClose: true,
-    });
-    dialogRef.componentInstance.event = e;
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == "save") {
-        this.croppedImage1 = dialogRef.componentInstance.croppedImage;
-        console.log("Image got:" + this.croppedImage1);
+      if(value == 2) {
+        this.editProductForm.patchValue({ image2: file });
       }
-    });
-  }
-
-  openLogoDialog2(e) {
-    let dialogRef = this.dialog.open(AddLogoDialogComponent, {
-      height: "auto",
-      width: "40%",
-      disableClose: true,
-    });
-    dialogRef.componentInstance.event = e;
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == "save") {
-        this.croppedImage2 = dialogRef.componentInstance.croppedImage;
-        console.log("Image got:" + this.croppedImage2);
-      }
-    });
+      
+    }
   }
 
 }

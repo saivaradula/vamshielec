@@ -20,7 +20,7 @@ export class AddComponent implements OnInit {
   productLocation = ['Hyderabad', 'Mumbai', 'Pune'];
   productColor = ['Red', 'White', 'Blue', 'Black'];
   productLength = [24, 30, 36, 40, 46];
-  productWeight = ['1 KG', '2 KG'];
+  productWeight = ['1', '2'];
   productWidth = [24, 30, 36, 40, 46];
   productHeight = [24, 30, 36, 40, 46];
   quantity = [1, 2, 3, 4, 5, 6];
@@ -199,9 +199,9 @@ export class AddComponent implements OnInit {
     formData.append('tags', values.tags);
     formData.append('productLocation', values.productLocation);
     formData.append('isActive', 'true');
-    formData.append('optionTypeId', '');
-    formData.append('optionValueId', '');
-    formData.append('userId', '');
+    formData.append('optionTypeId', '1');
+    formData.append('optionValueId', '1');
+    formData.append('userId', '1');
     formData.append('productColor', values.productColor);
     formData.append('productSize', values.productSize);
     formData.append('weight', values.weight);
@@ -228,10 +228,21 @@ export class AddComponent implements OnInit {
 
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   async addProductApi(params) {
     console.log(params);
     await (await this.productService.addProducts(params)).pipe(first()).subscribe(async data => {
       console.log(data)
+      if(data.success) {
+        this.openSnackBar(data.message, "");
+      } else {
+        this.openSnackBar(data.message, "");
+      }
     })
   }
 

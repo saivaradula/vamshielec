@@ -16,7 +16,6 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Category</label>
                             <div class="col-sm-9">
-                            {{details.category.id}}
                               <input type="text" class="form-control" formControlName="category" />
                             </div>
                         </div>
@@ -151,36 +150,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">                         
-                            <label class="col-sm-3 col-form-label">Image</label>
-                            <div class="col-sm-9 Add-photo">
-                                <span *ngIf="croppedImage1!=null">
-                                    <label for="file-input" class="addimglabel">
-                                    <div class="photos" [style.background-image]="'url(' +croppedImage1+ ')'">
-                                            <div class="photos-hover" >
-                                                <i class="mdi mdi-delete"></i>
-                                                <div>Upload</div>
-                                            </div>
-                                        <div class="photos-hover">
-                                            <a (click)="deleteImage()"><i class="far fa-trash-alt"></i></a>
-                                        </div>
-                                    </div>
-                                    <input type="file" (change)="handleFileSelect1($event)" id="file-input"
-                                    style="display: none;">
-                                </label>
-                                </span>
-                                <span>
-                                    <label for="file-input" class="addimglabel" *ngIf="croppedImage1==null">
-                                        <div class="AddBtn">
-                                            <div>
-                                                <i class="mdi mdi-plus"></i>
-                                                <div>Upload</div>
-                                            </div>
-                                        </div>
-                                    </label>
-                                    <input type="file" (change)="handleFileSelect1($event)" id="file-input"
-                                        style="display: none;">
-                                </span>
-                            </div>
+                            <label class="col-sm-3 col-form-label d-block">Image</label>
+                            <input type="file" (change)="onFileSelect($event, 1)">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -293,36 +264,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">C Image</label>
-                            <div class="col-sm-9 Add-photo">
-                                <span *ngIf="croppedImage2!=null">
-                                    <label for="file-input-2" class="addimglabel">
-                                    <div class="photos" [style.background-image]="'url(' +croppedImage2+ ')'">
-                                            <div class="photos-hover" >
-                                                <i class="mdi mdi-delete"></i>
-                                                <div>Upload</div>
-                                            </div>
-                                        <div class="photos-hover">
-                                            <a (click)="deleteImage()"><i class="far fa-trash-alt"></i></a>
-                                        </div>
-                                    </div>
-                                    <input type="file" (change)="handleFileSelect2($event)" id="file-input-2"
-                                    style="display: none;">
-                                </label>
-                                </span>
-                                <span>
-                                    <label for="file-input-2" class="addimglabel" *ngIf="croppedImage2==null">
-                                        <div class="AddBtn">
-                                            <div>
-                                                <i class="mdi mdi-plus"></i>
-                                                <div>Upload</div>
-                                            </div>
-                                        </div>
-                                    </label>
-                                    <input type="file" (change)="handleFileSelect2($event)" id="file-input-2"
-                                        style="display: none;">
-                                </span>
-                            </div>
+                            <label class="col-sm-3 col-form-label d-block">C Image</label>
+                            <input type="file" (change)="onFileSelect($event, 2)">
                         </div>
                     </div>
                 </div>

@@ -40,9 +40,9 @@ export class ProductService {
         );
     }
 
-    async updateProductDetails(id) {
+    async updateProductDetails(id, params) {
         return this.http
-        .get<any>(`${environment.apiURL}/products-update/${id}`)
+        .post<any>(`${environment.apiURL}/products-update/${id}`, params)
         .pipe(
             map((p) => {
                 return p;
