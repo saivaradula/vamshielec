@@ -33,6 +33,6 @@ export class ListComponent implements OnInit {
   }
 
   viewDetails(product) {
-    this.router.navigate([`/products/details/${product.id}`]);
+    this.router.navigate([`/products/edit/${product.id}`]);
   }
 }

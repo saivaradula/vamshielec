@@ -51,6 +51,7 @@ import { AddusersComponent } from "./users/addusers/addusers.component";
 import { UserdetailsComponent } from "./users/userdetails/userdetails.component";
 import { ProductDetailsComponent } from "./products/details/details.component";
 import { OrderlistComponent } from './users/orderlist/orderlist.component';
+import { EditProductComponent } from './products/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { OrderlistComponent } from './users/orderlist/orderlist.component';
     UserdetailsComponent,
     ProductDetailsComponent,
     AddComponent,
-    OrderlistComponent
+    OrderlistComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
