@@ -18,6 +18,7 @@ export class CategoryService {
   }
 
   async addCategory(data) {
+    
     return this.http
       .post<any>(`${environment.apiURL}/category-add`, data)
       .pipe(

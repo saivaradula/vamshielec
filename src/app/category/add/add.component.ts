@@ -5,6 +5,12 @@ import { AddLogoDialogComponent } from "../../shared/add-logo/add.logo.component
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from "@angular/forms";
 
 @Component({
   selector: "app-add",
@@ -12,25 +18,30 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   styleUrls: ["./add.component.scss"],
 })
 export class AddCategoryComponent implements OnInit {
-  imageChangedEvent: any = "";
-  croppedImage: any = null;
-  categoryName: any = "";
-
+  categoryForm: FormGroup;
   constructor(
     private router: Router,
     public dialog: MatDialog,
     public CS: CategoryService,
-    private _snackBar: MatSnackBar
-  ) {}
+    private _snackBar: MatSnackBar,
+    private fb: FormBuilder
+  ) {
+    this.categoryForm = this.fb.group({
+      name: ["", [Validators.required]],
+      logo: [null, [Validators.required]],
+    });
+  }
 
   ngOnInit(): void {}
 
-  deleteImage() {
-    this.croppedImage = null;
-  }
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
 
-  handleFileSelect(e) {
-    this.openLogoDialog(e);
+      this.categoryForm.patchValue({
+        logo: file,
+      });
+    }
   }
 
   openSnackBar(message: string, action: string) {
@@ -39,49 +50,27 @@ export class AddCategoryComponent implements OnInit {
     });
   }
 
-  openLogoDialog(e) {
-    let dialogRef = this.dialog.open(AddLogoDialogComponent, {
-      height: "auto",
-      width: "40%",
-      disableClose: true,
-    });
-    dialogRef.componentInstance.event = e;
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == "save") {
-        this.croppedImage = dialogRef.componentInstance.croppedImage;
-        console.log("Image got:" + this.croppedImage);
-      }
-    });
-  }
-
   cancelAdd() {
-    this.router.navigate(['/category/list']);
+    this.router.navigate(["/category/list"]);
   }
 
   async saveCategory() {
-    if (this.categoryName === "") {
-      this.openSnackBar("Please enter a category name", "");
-      return false;
-    }
+    if (this.categoryForm.valid) {
+      const formData = new FormData();
+      formData.append("name", this.categoryForm.get("name").value);
+      formData.append("isActive", "true");
+      formData.append("logo", this.categoryForm.get("logo").value);
 
-    // if (this.croppedImage === null) {
-    //   this.openSnackBar("Please upload Image", "");
-    //   return false;
-    // }
-
-    let body = {
-      name: this.categoryName,
-      isActive: true,
-       //logo: this.croppedImage,
-    }
-    await (await this.CS.addCategory(body))
-      .pipe(first())
-      .subscribe(
+      await (await this.CS.addCategory(formData)).pipe(first()).subscribe(
         async (p) => {
           this.openSnackBar("Category Added...", "");
-          this.router.navigate(['/category/list']);
+          this.router.navigate(["/category/list"]);
         },
         (error) => {}
       );
+    } else {
+      this.openSnackBar("Please Enter Mandatory Fields!", "");
+      return false;
+    }
   }
 }

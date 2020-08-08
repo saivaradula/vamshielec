@@ -47,7 +47,6 @@ export class AddLogoDialogComponent implements OnInit {
                 this.croppedImage = null;
                 this.openSnackBar("Image uploads are limited to 2MB. Please use a smaller image", "");
                 this.dialogRef.close("cancel");
-
             }
         }
 
