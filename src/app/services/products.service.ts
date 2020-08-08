@@ -39,4 +39,14 @@ export class ProductService {
             })
         );
     }
+
+    async updateProductDetails(id) {
+        return this.http
+        .get<any>(`${environment.apiURL}/products-update/${id}`)
+        .pipe(
+            map((p) => {
+                return p;
+            })
+        );
+    }
 }
