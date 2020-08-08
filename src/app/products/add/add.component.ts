@@ -74,7 +74,9 @@ export class AddComponent implements OnInit {
       variantRetailPrice: ['Select Price'],
       variantTaxPercent: ['Select Price'],
       baseTaxPercent: ['Select Base Tax Percent'],
-      purchaseNote: []
+      purchaseNote: [],
+      image1: [],
+      image2: []
     })
   }
 
@@ -176,115 +178,75 @@ export class AddComponent implements OnInit {
 
   addProduct(values) {
     console.log(values);
-    console.log('add product !!');
-    console.log('this.inStockRadio', this.inStockRadio);
-    console.log('this.visibilityInCatalogueRadio', this.visibilityInCatalogueRadio);
-    console.log('this.allowCustomerReviewRadio', this.allowCustomerReviewRadio);
-    console.log('this.discountAvailableRadio', this.discountAvailableRadio);
-    console.log('this.featuresAvailableRadio', this.featuresAvailableRadio);
 
-    let addProductParams = {
-      productTitle: values.productTitle,
-      published: '',
-      isFeatured: this.featuresAvailableRadio,
-      visibilityinCatalog: this.visibilityInCatalogueRadio,
-      unitOption: '',
-      image: 'c:/image.jpg',
-      shortDescription: values.shortDescription,
-      description: values.description,
-      salePriceStartsAt: values.salePriceStartsAt,
-      salePriceEndsAt: values.salePriceEndsAt,
-      inStock: this.inStockRadio,
-      stock: values.stock,
-      allowCustomerReviews: this.allowCustomerReviewRadio,
-      purchaseNote: values.purchaseNote,
-      salePrice: values.salePrice,
-      regularPrice: values.regularPrice,
-      tags: values.tags,
-      productLocation: values.productLocation,
-      isActive: '',
-      optionTypeId: '',
-      optionValueId: '',
-      userId: '',
-      productColor: values.productColor,
-      productSize: values.productSize,
-      weight: values.weight,
-      length: values.length,
-      width: values.width,
-      height: values.height,
-      productQuantity: values.productQuantity,
-      cimage: 'c:/image.jpg',
-      colorCode: values.colorCode,
-      addMoreFields: values.addMoreFields,
-      discountAvailable: this.discountAvailableRadio,
-      discount: values.discount,
-      categoryId: values.categoryId,
-      features: values.features,
-      variantRetailPrice: values.variantRetailPrice,
-      variantTaxPercent: values.variantTaxPercent,
-      baseTaxPercent: values.baseTaxPercent,
-      brandId: values.brandId,
-      quantity: values.productQuantity
-    }
-    console.log(addProductParams)
-    this.addProductApi(addProductParams);
+    const formData = new FormData();
+    formData.append('productTitle', values.productTitle);
+    formData.append('published', '');
+    formData.append('isFeatured', this.featuresAvailableRadio);
+    formData.append('visibilityinCatalog', this.visibilityInCatalogueRadio);
+    formData.append('unitOption', '');
+    formData.append('image', this.addProductForm.get('image1').value);
+    formData.append('shortDescription', values.shortDescription);
+    formData.append('description', values.description);
+    formData.append('salePriceStartsAt', values.salePriceStartsAt);
+    formData.append('salePriceEndsAt', values.salePriceEndsAt);
+    formData.append('inStock', this.inStockRadio);
+    formData.append('stock', values.stock);
+    formData.append('allowCustomerReviews', this.allowCustomerReviewRadio);
+    formData.append('purchaseNote', values.purchaseNote);
+    formData.append('salePrice', values.salePrice);
+    formData.append('regularPrice', values.regularPrice);
+    formData.append('tags', values.tags);
+    formData.append('productLocation', values.productLocation);
+    formData.append('isActive', 'true');
+    formData.append('optionTypeId', '');
+    formData.append('optionValueId', '');
+    formData.append('userId', '');
+    formData.append('productColor', values.productColor);
+    formData.append('productSize', values.productSize);
+    formData.append('weight', values.weight);
+    formData.append('length', values.length);
+    formData.append('width', values.width);
+    formData.append('height', values.height);
+    formData.append('productQuantity', values.productQuantity);
+    formData.append('cimage', this.addProductForm.get('image2').value);
+    formData.append('colorCode', values.colorCode);
+    formData.append('addMoreFields', values.addMoreFields);
+    formData.append('discountAvailable', values.discountAvailableRadio);
+    formData.append('discount', values.discount);
+    formData.append('categoryId', values.categoryId);
+    formData.append('features', values.features);
+    formData.append('variantRetailPrice', values.variantRetailPrice);
+    formData.append('variantTaxPercent', values.variantTaxPercent);
+    formData.append('baseTaxPercent', values.baseTaxPercent);
+    formData.append('brandId', values.brandId);
+    formData.append('quantity', values.productQuantity);
+
+    console.log(formData)
+    
+    this.addProductApi(formData);
 
   }
 
   async addProductApi(params) {
+    console.log(params);
     await (await this.productService.addProducts(params)).pipe(first()).subscribe(async data => {
       console.log(data)
     })
   }
 
-  deleteImage() {
-    this.croppedImage1 = null;
-  }
+  onFileSelect(event, value) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      if(value == 1) {
+        this.addProductForm.patchValue({ image1: file });
+      } 
 
-  handleFileSelect1(e) {
-    console.log('1');
-    this.openLogoDialog1(e);
-  }
-
-  handleFileSelect2(e) {
-    console.log('2');
-    this.openLogoDialog2(e);
-  }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
-
-  openLogoDialog1(e) {
-    let dialogRef = this.dialog.open(AddLogoDialogComponent, {
-      height: "auto",
-      width: "40%",
-      disableClose: true,
-    });
-    dialogRef.componentInstance.event = e;
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == "save") {
-        this.croppedImage1 = dialogRef.componentInstance.croppedImage;
-        console.log("Image got:" + this.croppedImage1);
+      if(value == 2) {
+        this.addProductForm.patchValue({ image2: file });
       }
-    });
-  }
-
-  openLogoDialog2(e) {
-    let dialogRef = this.dialog.open(AddLogoDialogComponent, {
-      height: "auto",
-      width: "40%",
-      disableClose: true,
-    });
-    dialogRef.componentInstance.event = e;
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == "save") {
-        this.croppedImage2 = dialogRef.componentInstance.croppedImage;
-        console.log("Image got:" + this.croppedImage2);
-      }
-    });
+      
+    }
   }
 
 }
