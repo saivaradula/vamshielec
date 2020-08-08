@@ -19,46 +19,28 @@
         <p class="card-description">
           Enter Brand Details...!
         </p>
-        <form
-          class="forms-sample"
-          #brandData="ngForm"
-          (ngSubmit)="onClickSubmit(brandData.value)"
-        >
+        <form [formGroup]="brandForm" (ngSubmit)="saveBrand()">        
           <div class="form-group">
             <label for="brandName">Brand Name</label>
             <input
               type="text"
               name="name"
               class="form-control"
-              id="brandName"
+              formControlName="name" 
               placeholder="Name"
-              ngModel
             />
           </div>
           <div class="form-group">
-            <label for="brandType">Category Id</label>
-            <select
-              class="form-control"
-              name="categoryId"
-              id="brandType"
-              ngModel
-            >
+            <label for="brandType">Category</label>
+            <select class="form-control" name="categoryId" id="brandType" formControlName="categoryId">
               <option>1</option>
               <option>2</option>
             </select>
           </div>
-          <!-- <div class="form-group">
-                        <label>File upload</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled
-                                placeholder="Upload Image">
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-gradient-primary"
-                                    type="button">Upload</button>
-                            </span>
-                        </div>
-                    </div> -->
+          <div class="form-group">
+              <label>File upload</label>
+              <input type="file" (change)="onFileSelect($event)">              
+          </div>
           <div class="form-group">
             <label for="brandDescription">Description</label>
             <textarea
@@ -66,7 +48,7 @@
               name="description"
               id="brandDescription"
               rows="4"
-              ngModel
+              formControlName="description" 
             ></textarea>
           </div>
           <button type="submit" class="btn btn-gradient-primary mr-2">
