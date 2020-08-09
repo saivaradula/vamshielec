@@ -20,6 +20,16 @@ export class BrandsService {
       );
   }
 
+  async getBrandDetails(id) {
+    return this.http
+      .get<any>(`${environment.apiURL}/brand/${id}`)
+      .pipe(
+        map((p) => {
+          return p;
+        })
+      );
+  }
+
   async addBrands(data) {
     return this.http
       .post<any>(`${environment.apiURL}/brands`, data)
