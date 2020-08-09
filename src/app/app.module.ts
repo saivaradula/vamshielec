@@ -53,6 +53,7 @@ import { ProductDetailsComponent } from "./products/details/details.component";
 import { OrderlistComponent } from './users/orderlist/orderlist.component';
 import { EditProductComponent } from './products/edit/edit.component';
 import { BrandseditComponent } from './brands/brandsedit/brandsedit.component';
+import { EditcategoryComponent } from './category/editcategory/editcategory.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { BrandseditComponent } from './brands/brandsedit/brandsedit.component';
     AddComponent,
     OrderlistComponent,
     EditProductComponent,
-    BrandseditComponent
+    BrandseditComponent,
+    EditcategoryComponent
   ],
   imports: [
     BrowserModule,

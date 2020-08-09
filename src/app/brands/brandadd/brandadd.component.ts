@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { BrandsService } from "src/app/services/brands.service";
+import { CategoryService } from "src/app/services/category.service";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { first } from "rxjs/operators";
 import {
   FormBuilder,
   FormGroup,
@@ -17,9 +19,11 @@ import {
 export class BrandaddComponent implements OnInit {
   brandsDetails: any;
   brandForm: FormGroup;
+  categories: [];
 
   constructor(
     private BS: BrandsService,
+    private CS: CategoryService,
     private router: Router,
     private _snackBar: MatSnackBar,
     private fb: FormBuilder
@@ -27,12 +31,19 @@ export class BrandaddComponent implements OnInit {
     this.brandForm = this.fb.group({
       name: ["", [Validators.required]],
       logo: [null, [Validators.required]],
-      categoryId: ["", [Validators.required]],
+      categoryId: [0, [Validators.required]],
       description: [null, []],
     });
   }
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    await (await this.CS.getCategories()).pipe(first()).subscribe(
+      async (p) => {
+        this.categories = p.result;
+      },
+      (error) => {}
+    );
+  }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -47,7 +58,6 @@ export class BrandaddComponent implements OnInit {
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-
       this.brandForm.patchValue({
         logo: file,
       });
@@ -61,6 +71,8 @@ export class BrandaddComponent implements OnInit {
       formData.append("categoryId", this.brandForm.get("categoryId").value);
       formData.append("description", this.brandForm.get("description").value);
       formData.append("logo", this.brandForm.get("logo").value);
+
+      console.log(formData);
 
       await (await this.BS.addBrands(formData)).subscribe(
         async (p) => {

@@ -1,6 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router, ActivatedRoute } from "@angular/router";
+import { BrandsService } from "src/app/services/brands.service";
 import { CategoryService } from "src/app/services/category.service";
 import { first } from "rxjs/operators";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-list",
@@ -12,12 +16,23 @@ export class CategoryListComponent implements OnInit {
   loadershow: boolean;
   columns: any;
 
-  constructor(public CS: CategoryService) {}
+  constructor(
+    private BS: BrandsService,
+    private router: Router,
+    private CS: CategoryService,
+    private _snackBar: MatSnackBar,
+    private fb: FormBuilder,
+    public AR: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.loadershow = true;
     this.columns = [{ prop: "id", name: "Id", width: "500" }];
     this.getList();
+  }
+  
+  edit(category) {
+    this.router.navigate([`/category/edit/${category.id}`])
   }
 
   async getList() {

@@ -22,7 +22,6 @@ export class BrandlistComponent implements OnInit {
   }
 
   edit(brand) {
-    console.log(brand);
     this.router.navigate([`/brands/edit/${brand.id}`])
   }
 

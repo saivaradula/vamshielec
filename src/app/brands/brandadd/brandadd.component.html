@@ -33,8 +33,10 @@
           <div class="form-group">
             <label for="brandType">Category</label>
             <select class="form-control" name="categoryId" id="brandType" formControlName="categoryId">
-              <option>1</option>
-              <option>2</option>
+              <option value="0">Select Category</option>
+              <option value="{{category.id}}" *ngFor="let category of categories">
+                {{category.name}}
+              </option>
             </select>
           </div>
           <div class="form-group">

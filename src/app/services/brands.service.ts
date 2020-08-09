@@ -39,4 +39,14 @@ export class BrandsService {
         })
       )
   }
+
+  async updateBrand(id, data) {
+    return this.http
+      .put<any>(`${environment.apiURL}/brand-update/${id}`, data)
+      .pipe(
+        map((p) => {
+          return p;
+        })
+      )
+  }
 }

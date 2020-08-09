@@ -15,6 +15,7 @@ import { BrandaddComponent } from './brands/brandadd/brandadd.component';
 import { OrderlistComponent } from './users/orderlist/orderlist.component';
 import { EditProductComponent } from './products/edit/edit.component';
 import { BrandseditComponent } from './brands/brandsedit/brandsedit.component';
+import { EditcategoryComponent } from './category/editcategory/editcategory.component';
 
 const routes: Routes = [ 
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'products/edit/:id', component: EditProductComponent },
   { path: 'brands/list', component: BrandlistComponent },
   { path: 'brands/add', component: BrandaddComponent },
-  { path: 'brands/edit/:id', component: BrandseditComponent }
+  { path: 'brands/edit/:id', component: BrandseditComponent },
+  { path: 'category/edit/:id', component: EditcategoryComponent }
 ];
 
 @NgModule({
