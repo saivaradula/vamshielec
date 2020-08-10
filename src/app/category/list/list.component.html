@@ -39,9 +39,12 @@
                           <button mat-icon-button (click)="edit(row)">
                             <i class="mdi mdi-border-color"></i>
                           </button>
-                          <mat-slide-toggle>
-                            {{row.status}}
-                          </mat-slide-toggle>
+                          <button mat-icon-button (click)="edit(row)">
+                            <i class="mdi mdi-border-color"></i>
+                          </button>
+                          <button mat-icon-button (click)="delete(row)">
+                            <i class="mdi mdi-delete"></i>
+                          </button>
                         </ng-template>
                       </ngx-datatable-column>
                   </ngx-datatable>

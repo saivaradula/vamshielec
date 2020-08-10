@@ -18,43 +18,83 @@
         <h4 class="card-title">Details</h4>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4">
-              <label>Product Name</label>
-              &nbsp;&nbsp;&nbsp;
-              <label><strong>{{ details.productTitle }}</strong></label>
+            <div class="col-md-8">
+              <div class="row">
+                <label>Product Name</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{ details.productTitle }}</strong></label
+                >
+              </div>
+              <div>&nbsp;</div>
+              <div class="row">
+                <label>Category</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{ details.category.name }}</strong></label
+                >
+              </div>
+              <div>&nbsp;</div>
+              <div class="row">
+                <label>Brand</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{ details.brand.name }}</strong></label
+                >
+              </div>
+              <div>&nbsp;</div>
+              <div class="row">
+                <label>Sale Price</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{ details.salePrice }}</strong></label
+                >
+              </div>
+              <div>&nbsp;</div>
+              <div class="row">
+                <label>Regular Price</label>
+                &nbsp;&nbsp;&nbsp;
+                <label
+                  ><strong>{{ details.reqularPrice }}</strong></label
+                >
+              </div>
             </div>
             <div class="col-md-4">
-              <label>Last Name</label>
-              &nbsp;&nbsp;&nbsp;
-              <label
-                ><strong>{{ details.lastName }}</strong></label
-              >
+              <div style="border: 1px solid #ccc; height: 200px;">
+                <img src="{{details.image}}" />
+              </div>
+            </div>
+          </div>
+          <div>&nbsp;</div>
+          <div class="row">             
+              <label><strong>Description</strong></label>
+              <br />
+              <label>{{ details.description }}</label>             
+          </div>
+          <div>&nbsp;</div>
+          <hr />
+          <div class="row">
+            <label><strong> Variance & Features</strong></label>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label>Color: &nbsp;&nbsp; {{details.product_variances[0].productColor}}</label>
             </div>
             <div class="col-md-4">
-              <label>Email</label>
-              &nbsp;&nbsp;&nbsp;
-              <label
-                ><strong>{{ details.email }}</strong></label
-              >
+              <label>Height: &nbsp;&nbsp; {{details.product_variances[0].height}}</label>
+            </div>
+            <div class="col-md-4">
+              <label>Weight: &nbsp;&nbsp; {{details.product_variances[0].weight}}</label>
+            </div>
+            <div class="col-md-4">
+              <label>Width: &nbsp;&nbsp; {{details.product_variances[0].width}}</label>
             </div>
           </div>
           <div>&nbsp;</div>
           <div class="row">
-            <div class="col-md-4">
-              <label>Mobile</label>
-              &nbsp;&nbsp;&nbsp;
-              <label
-                ><strong>{{ details.mobile }}</strong></label
-              >
-            </div>
-            <div class="col-md-4">
-              <label>Status</label>
-              &nbsp;&nbsp;&nbsp;
-              <label
-                ><strong>{{
-                  details.isActive ? "Active" : "Inactive"
-                }}</strong></label
-              >
+            <label>Features: &nbsp;</label>
+            <div>
+              {{details.product_variances[0].features}}
             </div>
           </div>
         </div>

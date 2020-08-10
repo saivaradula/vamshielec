@@ -44,4 +44,14 @@ export class CategoryService {
         })
       );
   }
+
+  async deleteCategory(id) {
+    return this.http
+      .get<any>(`${environment.apiURL}/category-delete/${id}`,)
+      .pipe(
+        map((p) => {
+          return p;
+        })
+      );
+  }
 }

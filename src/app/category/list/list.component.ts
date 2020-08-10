@@ -44,4 +44,13 @@ export class CategoryListComponent implements OnInit {
       (error) => {}
     );
   }
+
+  async delete(category) {
+    await (await this.CS.deleteCategory(category.id)).pipe(first()).subscribe(
+      async (p) => {
+        this.categories = this.categories.filter(c => c.id !== category.id);
+      },
+      (error) => {}
+    );
+  }
 }

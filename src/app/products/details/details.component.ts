@@ -33,6 +33,7 @@ export class ProductDetailsComponent implements OnInit {
       async (p) => {
         this.loadershow = false;
         this.details = p.result[0];
+        console.log(this.details);
       },
       (error) => {
         console.log(error.message);
