@@ -210,6 +210,10 @@ export class AddComponent implements OnInit {
     (this.featuresAvailableRadio === 'Yes') ? this.isFeaturesAvailable = true : this.isFeaturesAvailable = false;
   }
 
+  cancelAdd() {
+    this.router.navigate([`/products/list`]);
+  }
+
   addProduct(values) {
     console.log(values);
 

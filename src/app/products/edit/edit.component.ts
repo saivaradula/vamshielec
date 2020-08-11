@@ -106,6 +106,10 @@ export class EditProductComponent implements OnInit {
     );
   }
 
+  cancelAdd() {
+    this.router.navigate([`/products/list`]);
+  }
+  
   async getCategoryList() {
     await (await this.CS.getCategories()).pipe(first()).subscribe(
       async (p) => {
