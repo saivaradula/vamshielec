@@ -50,6 +50,15 @@ export class EditcategoryComponent implements OnInit {
     });
   }
 
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.categoryForm.patchValue({
+        logo: file,
+      });
+    }
+  }
+
   cancelAdd() {
     this.router.navigate(["/category/list"]);
   }
