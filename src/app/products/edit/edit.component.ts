@@ -126,7 +126,7 @@ export class EditProductComponent implements OnInit {
     this.editProductForm.get('baseTaxPercent').patchValue(values.baseTaxPercent);
     this.editProductForm.get('purchaseNote').patchValue(values.purchaseNote);
     this.editProductForm.get('image1').patchValue(values.image);
-    this.editProductForm.get('image2').patchValue(values.cimage);
+    this.editProductForm.get('image2').patchValue(values.product_variances[0].cimage);
 
     this.inStockChecked = values.inStock;
     this.isVisibilityChecked = values.visibilityinCatalog;
@@ -162,8 +162,8 @@ export class EditProductComponent implements OnInit {
 
   inStock(value) {
     console.log(value);
-    this.inStockRadio = value;
-    (this.inStockRadio === 'yes') ? this.isStockAvailable = true : this.isStockAvailable = false;
+    this.inStockChecked = value;
+    (this.inStockChecked == 'yes') ? this.isStockAvailable = true : this.isStockAvailable = false;
   }
 
   visibilityInCatalogue(value) {
@@ -188,67 +188,24 @@ export class EditProductComponent implements OnInit {
     (this.featuresAvailableRadio === 'yes') ? this.isFeaturesAvailable = true : this.isFeaturesAvailable = false;
   }
 
-  updateProduct(values) {
+  async updateProduct(values) {
     console.log(values);
-    //console.log(this.editProductForm.value);
-    /* let addProductParams = {
-      productTitle: values.productTitle,
-      published: '',
-      isFeatured: this.featuresAvailableRadio,
-      visibilityinCatalog: this.visibilityInCatalogueRadio,
-      unitOption: '',
-      image: this.croppedImage1,
-      shortDescription: values.shortDescription,
-      description: values.description,
-      salePriceStartsAt: values.salePriceStartsAt,
-      salePriceEndsAt: values.salePriceEndsAt,
-      inStock: this.inStockRadio || this.inStockChecked,
-      stock: (this.inStockRadio == 'yes' || this.inStockChecked == 'yes') ? values.stock : null,
-      allowCustomerReviews: this.allowCustomerReviewRadio,
-      purchaseNote: values.purchaseNote,
-      salePrice: values.salePrice,
-      regularPrice: values.regularPrice,
-      tags: values.tags,
-      productLocation: values.productLocation,
-      isActive: '',
-      optionTypeId: '',
-      optionValueId: '',
-      userId: '',
-      productColor: values.productColor,
-      productSize: values.productSize,
-      weight: values.weight,
-      length: values.length,
-      width: values.width,
-      height: values.height,
-      productQuantity: values.quantity,
-      cimage: this.croppedImage2,
-      colorCode: values.colorCode,
-      addMoreFields: values.addMoreFields,
-      discountAvailable: this.discountAvailableRadio,
-      discount: values.discount,
-      categoryId: this.details.category.id,
-      features: values.features,
-      variantRetailPrice: values.variantRetailPrice,
-      variantTaxPercent: values.variantTaxPercent,
-      baseTaxPercent: values.baseTaxPercent,
-      brandId: this.details.brand.id,
-      quantity: values.quantity
-    } */
-    //console.log(addProductParams)
-
+    console.log(this.inStockRadio)
+    console.log(this.inStockChecked);
+    console.log(values.stock);
     const formData = new FormData();
     formData.append('productTitle', values.productTitle);
-    formData.append('published', '');
+    formData.append('published', 'yes');
     formData.append('isFeatured', this.featuresAvailableRadio);
-    formData.append('visibilityinCatalog', this.visibilityInCatalogueRadio);
-    formData.append('unitOption', '');
+    formData.append('visibilityinCatalog', this.isVisibilityChecked);
+    formData.append('unitOption', '1');
     formData.append('image', this.editProductForm.get('image1').value);
     formData.append('shortDescription', values.shortDescription);
     formData.append('description', values.description);
     formData.append('salePriceStartsAt', values.salePriceStartsAt);
     formData.append('salePriceEndsAt', values.salePriceEndsAt);
-    formData.append('inStock', this.inStockRadio || this.inStockChecked,);
-    formData.append('stock', (this.inStockRadio == 'yes' || this.inStockChecked == 'yes') ? values.stock : null);
+    formData.append('inStock', this.inStockChecked);
+    formData.append('stock', (this.inStockChecked.toLowerCase() == 'yes') ? values.stock : null);
     formData.append('allowCustomerReviews', this.allowCustomerReviewRadio);
     formData.append('purchaseNote', values.purchaseNote);
     formData.append('salePrice', values.salePrice);
@@ -265,29 +222,26 @@ export class EditProductComponent implements OnInit {
     formData.append('length', values.length);
     formData.append('width', values.width);
     formData.append('height', values.height);
-    formData.append('productQuantity', values.productQuantity);
+    formData.append('productQuantity', values.quantity);
     formData.append('cimage', this.editProductForm.get('image2').value);
     formData.append('colorCode', values.colorCode);
     formData.append('addMoreFields', values.addMoreFields);
-    formData.append('discountAvailable', values.discountAvailableRadio);
+    formData.append('discountAvailable', this.discountAvailableRadio);
     formData.append('discount', values.discount);
-    formData.append('categoryId', values.categoryId);
+    formData.append('categoryId', this.details.categoryId);
     formData.append('features', values.features);
     formData.append('variantRetailPrice', values.variantRetailPrice);
     formData.append('variantTaxPercent', values.variantTaxPercent);
     formData.append('baseTaxPercent', values.baseTaxPercent);
-    formData.append('brandId', values.brandId);
-    formData.append('quantity', values.productQuantity);
+    formData.append('brandId', values.brand);
+    formData.append('quantity', values.quantity);
 
-    this.editProductApi(this.details.id, formData);
-
-  }
-
-  async editProductApi(id, params) {
-    await (await this.productService.updateProductDetails(id, params)).pipe(first()).subscribe(async data => {
+    await (await this.productService.updateProductDetails(this.details.id, formData)).pipe(first()).subscribe(async data => {
       console.log(data)
     })
+
   }
+
 
   onFileSelect(event, value) {
     if (event.target.files.length > 0) {
