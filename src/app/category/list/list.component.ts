@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./list.component.scss"],
 })
 export class CategoryListComponent implements OnInit {
-  categories: Array<object> = [];
+  categories = [];
   loadershow: boolean;
   columns: any;
 
@@ -46,9 +46,18 @@ export class CategoryListComponent implements OnInit {
   }
 
   async delete(category) {
+    console.log(category);
     await (await this.CS.deleteCategory(category.id)).pipe(first()).subscribe(
       async (p) => {
-        this.categories = this.categories.filter(c => c.id !== category.id);
+        console.log(p);
+        if(p.success) {
+          alert(p.message);
+          console.log(this.categories);
+          let index = this.categories.findIndex(c => c.id === category.id);
+          this.categories.splice(index, 1);
+          //this.categories = this.categories.filter(c => c.id !== category.id);
+        }
+        
       },
       (error) => {}
     );
