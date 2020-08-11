@@ -18,7 +18,7 @@
                             <div class="col-sm-9">
                                 <select class="form-control" formControlName="categoryId" (change)="categoryChg($event.target.value)">
                                     <option>Select Category</option>
-                                    <option *ngFor="let c of categories" [value]="c.id">{{c.category}}</option>
+                                    <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <div class="col-sm-9">
                                 <select class="form-control" formControlName="brandId" (change)="brandChg($event.target.value)">
                                     <option>Select Brand</option>
-                                    <option *ngFor="let b of brands" [value]="b.id">{{b.brand}}</option>
+                                    <option *ngFor="let b of brands" [value]="b.id">{{b.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -210,10 +210,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Product Size</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="productSize" (change)="productSizeChg($event.target.value)">
-                                    <option>Select Size</option>
-                                    <option *ngFor="let size of productSize" [value]="size">{{size}}</option>
-                                </select>
+                                <input type="text" formControlName="productSize" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -224,10 +221,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Product Location</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="productLocation" (change)="productLocationChg($event.target.value)">
-                                    <option>Select Location</option>
-                                    <option *ngFor="let loc of productLocation" [value]="loc">{{loc}}</option>
-                                </select>
+                                <input type="text" formControlName="productLocation" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -235,10 +229,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Product Color</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="productColor" (change)="productColorChg($event.target.value)">
-                                    <option>Select Color</option>
-                                    <option *ngFor="let color of productColor" [value]="color">{{ color }}</option>
-                                </select>
+                                <input type="text" formControlName="productColor" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -248,10 +239,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Length</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="length" (change)="productLengthChg($event.target.value)">
-                                    <option>Select Length</option>
-                                    <option *ngFor="let length of productLength" [value]="length">{{ length }}</option>
-                                </select>
+                                <input type="text" formControlName="length" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -259,10 +247,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Weight</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="weight" (change)="productWeightChg($event.target.value)">
-                                    <option>Select Weight</option>
-                                    <option *ngFor="let kg of productWeight" [value]="kg">{{kg}}</option>
-                                </select>
+                                <input type="text" formControlName="weight" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -272,10 +257,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Width</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="width" (change)="productWidthChg($event.target.value)">
-                                    <option>Select Width</option>
-                                    <option *ngFor="let width of productWidth" [value]="width">{{width}}</option>
-                                </select>
+                                <input type="text" formControlName="width" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -283,10 +265,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Height</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="height" (change)="productHeightChg($event.target.value)">
-                                    <option>Select Height</option>
-                                    <option *ngFor="let height of productHeight" [value]="height">{{height}}</option>
-                                </select>
+                                <input type="text" formControlName="height" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -296,10 +275,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Quantity</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="productQuantity" (change)="productQtyChg($event.target.value)">
-                                    <option>Select Quantity</option>
-                                    <option *ngFor="let qty of quantity" [value]="qty">{{qty}}</option>
-                                </select>
+                                <input type="text" formControlName="productQuantity" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -326,10 +302,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Color Code</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="colorCode" (change)="colorCodeChg($event.target.value)">
-                                    <option>Select Color Code</option>
-                                    <option *ngFor="let code of colorCode" [value]="code">{{code}}</option>
-                                </select>
+                                <input type="text" formControlName="colorCode" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -337,10 +310,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Add More Fields</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="addMoreFields" (change)="fieldChg($event.target.value)">
-                                    <option>Select Field</option>
-                                    <option *ngFor="let fields of moreFields" [value]="fields.attr">{{fields.attr}}</option>
-                                </select>
+                                <input type="text" formControlName="addMoreFields" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -375,10 +345,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Discount</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="discount" (change)="discountChg($event.target.value)">
-                                    <option>Select Discount</option>
-                                    <option *ngFor="let disc of discounts" [value]="disc">{{disc}}</option>
-                                </select>
+                                <input type="text" formControlName="discount" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -413,10 +380,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Features</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="features" (change)="featureChg($event.target.value)">
-                                    <option>Select Feature</option>
-                                    <option *ngFor="let feature of features" [value]="feature">{{feature}}</option>
-                                </select>
+                                <input type="text" formControlName="features" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -426,10 +390,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Variant Retail Price</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="variantRetailPrice" (change)="retailPriceChg($event.target.value)">
-                                    <option>Select Price</option>
-                                    <option *ngFor="let retailPrice of variantRetailPrice" [value]="retailPrice">{{retailPrice}}</option>
-                                </select>
+                                <input type="text" formControlName="variantRetailPrice" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -437,10 +398,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Variant Tax Price</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="variantTaxPercent" (change)="variantTaxChg($event.target.value)">
-                                    <option>Select Price</option>
-                                    <option *ngFor="let taxPrice of variantTaxPrice" [value]="taxPrice">{{taxPrice}}</option>
-                                </select>
+                                <input type="text" formControlName="variantTaxPercent" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -450,10 +408,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Base Tax Percent</label>
                             <div class="col-sm-9">
-                                <select class="form-control" formControlName="baseTaxPercent" (change)="baseTaxChg($event.target.value)">
-                                    <option>Select Base Tax Percent</option>
-                                    <option *ngFor="let base of baseTaxPercent" [value]="base">{{base}}</option>
-                                </select>
+                                <input type="text" formControlName="baseTaxPercent" class="form-control" />
                             </div>
                         </div>
                     </div>

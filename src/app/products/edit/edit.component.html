@@ -16,7 +16,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Category</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" formControlName="category" />
+                                <select class="form-control" formControlName="category">
+                                    <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
+                                </select>
+                              <!-- <input type="text" class="form-control" formControlName="category" /> -->
                             </div>
                         </div>
                     </div>
@@ -42,9 +45,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Brand</label>
+                            <label class="col-sm-3 col-form-label">Brand</label> 
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" formControlName="brand" />
+                                <select class="form-control" formControlName="brand">
+                                    <option *ngFor="let b of brands" [value]="b.id">{{b.name}}</option>
+                                </select>
+                              <!-- <input type="text" class="form-control" formControlName="brand" /> -->
                             </div>
                         </div>
                     </div>

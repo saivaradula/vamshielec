@@ -5,6 +5,9 @@ import { first } from 'rxjs/operators';
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { AddLogoDialogComponent } from 'src/app/shared/add-logo/add.logo.component';
+import { BrandsService } from 'src/app/services/brands.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -14,8 +17,8 @@ import { AddLogoDialogComponent } from 'src/app/shared/add-logo/add.logo.compone
 export class AddComponent implements OnInit {
 
   addProductForm: FormGroup;
-  categories = [{ id: 1, category: 'Category 1' }, { id: 2, category: 'Category 2' }, { id: 3, category: 'Category 3' }, { id: 4, category: 'Category 4' }, { id: 5, category: 'Category 5' }]
-  brands = [{ id: 1, brand: 'brand 1' }, { id: 2, brand: 'brand 2' }, { id: 3, brand: 'brand 3' }, { id: 4, brand: 'brand 4' }, { id: 5, brand: 'brand 5' }]
+  categories: any = [];
+  brands: any = [];
   productSize = [2, 3, 4, 5, 6];
   productLocation = ['Hyderabad', 'Mumbai', 'Pune'];
   productColor = ['Red', 'White', 'Blue', 'Black'];
@@ -44,7 +47,7 @@ export class AddComponent implements OnInit {
   croppedImage1: any;
   croppedImage2: any;
 
-  constructor(private fb: FormBuilder, private productService: ProductService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private productService: ProductService, public dialog: MatDialog, private _snackBar: MatSnackBar, private BS: BrandsService, private CS: CategoryService, private router: Router) { }
 
   ngOnInit(): void {
     this.addProductForm = this.fb.group({
@@ -59,25 +62,56 @@ export class AddComponent implements OnInit {
       salePriceEndsAt: [],
       stock: [],
       tags: [],
-      productSize: ['Select Size'],
-      productLocation: ['Select Location'],
-      productColor: ['Select Color'],
-      length: ['Select Length'],
-      weight: ['Select Weight'],
-      width: ['Select Width'],
-      height: ['Select Height'],
-      productQuantity: ['Select Quantity'],
-      colorCode: ['Select Color Code'],
-      addMoreFields: ['Select Field'],
-      discount: ['Select Discount'],
-      features: ['Select Feature'],
-      variantRetailPrice: ['Select Price'],
-      variantTaxPercent: ['Select Price'],
-      baseTaxPercent: ['Select Base Tax Percent'],
+      productSize: [],
+      productLocation: [''],
+      productColor: [''],
+      length: [''],
+      weight: [''],
+      width: [''],
+      height: [''],
+      productQuantity: [''],
+      colorCode: [''],
+      addMoreFields: [''],
+      discount: [''],
+      features: [''],
+      variantRetailPrice: [''],
+      variantTaxPercent: [''],
+      baseTaxPercent: [''],
       purchaseNote: [],
       image1: [],
       image2: []
     })
+    this.getBrandsList();
+    this.getCategoryList();
+  }
+
+  async getBrandsList() {
+    await (await this.BS.getBrands()).pipe(first()).subscribe(
+      async (p) => {
+        console.log(p.result);
+        p.result.map(brand => {
+          if(brand.name !== null) {
+            this.brands.push(brand);
+          }
+        })
+        console.log(this.brands);
+      },
+      (error) => {}
+    );
+  }
+
+  async getCategoryList() {
+    await (await this.CS.getCategories()).pipe(first()).subscribe(
+      async (p) => {
+        p.result.map(categories => {
+          if(categories.name !== null) {
+            this.categories.push(categories);
+          }
+        })
+        console.log(this.categories);
+      },
+      (error) => {}
+    );
   }
 
   categoryChg(category) {
@@ -240,6 +274,7 @@ export class AddComponent implements OnInit {
       console.log(data)
       if(data.success) {
         this.openSnackBar(data.message, "");
+        this.router.navigate([`/products/list`]);
       } else {
         this.openSnackBar(data.message, "");
       }

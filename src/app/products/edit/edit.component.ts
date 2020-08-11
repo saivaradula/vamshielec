@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { AddLogoDialogComponent } from 'src/app/shared/add-logo/add.logo.component';
+import { CategoryService } from 'src/app/services/category.service';
+import { BrandsService } from 'src/app/services/brands.service';
 
 @Component({
   selector: 'app-edit',
@@ -33,13 +35,15 @@ export class EditProductComponent implements OnInit {
   
   croppedImage1: any;
   croppedImage2: any;
+  categories: any = [];
+  brands: any = [];
 
   constructor(
     public PS: ProductService,
     public router: Router,
     public AR: ActivatedRoute,
     private productService: ProductService,
-    private fb: FormBuilder, public dialog: MatDialog, private _snackBar: MatSnackBar
+    private fb: FormBuilder, public dialog: MatDialog, private _snackBar: MatSnackBar, private CS: CategoryService, private BS: BrandsService
   ) {
     this.AR.params.subscribe((params) => {
       this.productId = params.id;
@@ -48,6 +52,8 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductDetails();
+    this.getCategoryList();
+    this.getBrandsList();
     this.editProductForm = this.fb.group({
       productTitle: [],
       category: [],
@@ -79,6 +85,8 @@ export class EditProductComponent implements OnInit {
       image1: [],
       image2:[]
     })
+
+    
   }
 
   async getProductDetails() {
@@ -88,7 +96,9 @@ export class EditProductComponent implements OnInit {
         this.loadershow = false;
         this.details = p.result[0];
         console.log(this.details);
-        this.patchEditValues(this.details);
+
+        this.patchEditValues(this.details);    
+        
       },
       (error) => {
         console.log(error.message);
@@ -96,13 +106,43 @@ export class EditProductComponent implements OnInit {
     );
   }
 
+  async getCategoryList() {
+    await (await this.CS.getCategories()).pipe(first()).subscribe(
+      async (p) => {
+        p.result.map(categories => {
+          if(categories.name !== null) {
+            this.categories.push(categories);
+          }
+        })
+      },
+      (error) => {}
+    );
+  }
+
+  async getBrandsList() {
+    await (await this.BS.getBrands()).pipe(first()).subscribe(
+      async (p) => {
+        console.log(p.result);
+        p.result.map(brand => {
+          if(brand.name !== null) {
+            this.brands.push(brand);
+          }
+        })
+        console.log(this.brands);
+      },
+      (error) => {}
+    );
+  }
+  
+
   patchEditValues(values: any) {
     console.log(values);
     this.editProductForm.get('productTitle').patchValue(values.productTitle);
-    this.editProductForm.get('category').patchValue(values.category.name);
+    
+    this.editProductForm.get('category').patchValue(values.category.id);
     this.editProductForm.get('shortDescription').patchValue(values.shortDescription);
     this.editProductForm.get('description').patchValue(values.description);
-    this.editProductForm.get('brand').patchValue(values.brand.name);
+    this.editProductForm.get('brand').patchValue(values.brand.id);
     this.editProductForm.get('regularPrice').patchValue(values.reqularPrice);
     this.editProductForm.get('salePrice').patchValue(values.salePrice);
     this.editProductForm.get('salePriceStartsAt').patchValue(values.salePriceStartsAt);
